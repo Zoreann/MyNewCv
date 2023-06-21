@@ -16,5 +16,6 @@
     <string name="menu_slideshow">LogOut</string>
     <string name="logout">LogOut</string>
     <string name="save">SAVE</string>
-    <string name="your_numer">your numer</string>w
+    <string name="your_numer">your numer</string>
+    <string name="new_project">New Project</string>w
 </resources>

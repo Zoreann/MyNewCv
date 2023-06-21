@@ -37,23 +37,21 @@ class MainCreateActiity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMainCreateActiity.toolbar)
 
-//        binding.appBarMainCreateActiity.fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
-//        }
+        binding.appBarMainCreateActiity.fab.setOnClickListener { view ->
+            val intent = Intent (this,MainCreateActiity::class.java)
+            startActivity(intent)
+            finish()
+        }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val headerView: View = navView.getHeaderView(0)
         val userEmailTextView: TextView = headerView.findViewById(R.id.userEmail)
 
 
-
         val navController = findNavController(R.id.nav_host_fragment_content_main_create_actiity)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_home, R.id.nav_gallery
             ), drawerLayout
         )
 
@@ -74,6 +72,7 @@ class MainCreateActiity : AppCompatActivity() {
         menuInflater.inflate(R.menu.main_create_actiity, menu)
         return true
     }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main_create_actiity)
