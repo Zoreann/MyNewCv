@@ -1,6 +1,5 @@
 package com.example.mynewcv
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -20,7 +19,7 @@ class Registration : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
-        auth = Firebase.auth
+       auth = Firebase.auth
 
         super.onCreate(savedInstanceState)
         binding = ActivityRegistrationBinding.inflate(layoutInflater)
@@ -28,7 +27,7 @@ class Registration : AppCompatActivity() {
         setContentView(view)
 
         val currentUser = auth.currentUser
-        if (currentUser !=null){
+        if (currentUser != null){
             val intent = Intent (this,MainCreateActiity::class.java)
             startActivity(intent)
             finish()

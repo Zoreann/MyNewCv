@@ -22,10 +22,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.logout.setOnClickListener(View.OnClickListener {
-                FirebaseAuth.getInstance().signOut()
-            val intent  = Intent(this,Login::class.java)
-            startActivity(intent)
-            finish()
+
         })
 
 

@@ -14,7 +14,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mynewcv.databinding.ActivityMainCreateActiityBinding
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -54,7 +53,15 @@ class MainCreateActiity : AppCompatActivity() {
                 R.id.nav_home, R.id.nav_gallery
             ), drawerLayout
         )
-
+        val menu = navView.menu
+        val logoutButton = menu.findItem(R.id.buttonLogOut)
+        logoutButton.setOnMenuItemClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent  = Intent(this,Login::class.java)
+            startActivity(intent)
+            finish()
+            true
+        }
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         if (user == null){
@@ -73,9 +80,10 @@ class MainCreateActiity : AppCompatActivity() {
         return true
     }
 
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main_create_actiity)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+
 }
