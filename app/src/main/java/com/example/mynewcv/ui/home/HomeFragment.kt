@@ -11,6 +11,10 @@ import com.example.mynewcv.databinding.FragmentHomeBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.itextpdf.text.Document
+import com.itextpdf.text.Paragraph
+import com.itextpdf.text.pdf.PdfWriter
+import java.io.FileOutputStream
 
 class HomeFragment : Fragment() {
 
@@ -31,12 +35,62 @@ class HomeFragment : Fragment() {
         binding.Save.setOnClickListener(View.OnClickListener {
 
             AddNewUserInfo()
+
+
+            val PjName = binding.CvId.text.toString()
+            val name = binding.editTextName.text.toString()
+            val surname = binding.editSurname.text.toString()
+            val phoneNumber = binding.editTextNumber.text.toString()
+            val email = binding.editEmail.text.toString()
+            val post = binding.editPosada.text.toString()
+            val summary = binding.editSummary.text.toString()
+            val hardSkills = binding.editHadrSkils.text.toString()
+            val softSkills = binding.EditSoftSkils.text.toString()
+
+            generatePdf(PjName, name, surname, phoneNumber, email, post, summary, hardSkills, softSkills)
+
             Toast.makeText(requireContext(), "CV is successfully saved", Toast.LENGTH_SHORT).show()
         })
 
         return root
     }
 
+
+    fun generatePdf(
+        PjName: String,
+        name: String,
+        surname: String,
+        phoneNumber: String,
+        email: String,
+        post: String,
+        summary: String,
+        hardSkills: String,
+        softSkills: String
+    ) {
+        val fileName = "output.pdf"
+
+        try {
+            val document = Document()
+            PdfWriter.getInstance(document, FileOutputStream(fileName))
+            document.open()
+
+            document.add(Paragraph("Project Name: $PjName"))
+            document.add(Paragraph("Name: $name"))
+            document.add(Paragraph("Surname: $surname"))
+            document.add(Paragraph("Phone Number: $phoneNumber"))
+            document.add(Paragraph("Email: $email"))
+            document.add(Paragraph("Post: $post"))
+            document.add(Paragraph("Summary: $summary"))
+            document.add(Paragraph("Hard Skills: $hardSkills"))
+            document.add(Paragraph("Soft Skills: $softSkills"))
+
+            document.close()
+
+            println("PDF generated successfully. File: $fileName")
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
 
 

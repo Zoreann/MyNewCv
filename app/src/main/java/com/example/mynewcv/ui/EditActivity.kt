@@ -8,7 +8,7 @@ import com.example.mynewcv.databinding.ActivityEditBinding
 
 class EditActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
+
     private lateinit var binding: ActivityEditBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
